@@ -7,9 +7,9 @@ app.use(cors())
 
 app.use(express.json())
 const {userRouter}=require("./routes/user.route")
-
- app.use("/users",userRouter)
-
+const { noteRouter } = require('./routes/note.route')
+app.use("/users",userRouter)
+app.use("/notes",noteRouter)
 
 
 
