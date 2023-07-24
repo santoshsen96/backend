@@ -60,7 +60,23 @@ userRouter.get("/",async(req,res)=>{
         res.json({error:err.message})
     }
 })
+userRouter.delete("/delete/:id",async(req,res)=>{
+    
+    const {id} = req.params
+    try{
+        const user=await userModel.findOne({_id:id})
+        
+        
+            await userModel.findByIdAndDelete({_id:id},req.body)
+            res.json({msg:`${user.name} has deleted`})
+        
+            res.json({msg:"Not authorized"})
+        
 
+    }catch(err){
+        res.json({error:err})
+    }
+})
 
 module.exports={
     userRouter
