@@ -29,7 +29,7 @@ userRouter.post("/register",async(req,res)=>{
 
 
 userRouter.post("/login",async(req,res)=>{
-const {email,pass}=req.body
+const {email,pass,name}=req.body
     try{
         const user=await userModel.findOne({email})
         
@@ -38,7 +38,7 @@ const {email,pass}=req.body
                 // result == true
                 if(result){
                     let token=jwt.sign({userID:user._id,user:user.name},'masai')
-                    res.status(200).json({msg:"Login Successfull!!",token:token})
+                    res.status(200).json({msg:"Login Successfull!!",token:token,name:name})
                 }else{
                     res.status(200).json({msg:"Wrong Credential!!"})
                 }
