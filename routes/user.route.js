@@ -52,6 +52,15 @@ const {email,pass}=req.body
     }
 })
 
+userRouter.get("/",async(req,res)=>{
+    try{
+        const notes=await userModel.find()
+        res.send(notes)
+    }catch(err){
+        res.json({error:err.message})
+    }
+})
+
 
 module.exports={
     userRouter
